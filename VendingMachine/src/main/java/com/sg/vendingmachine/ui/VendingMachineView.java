@@ -3,7 +3,6 @@
     10/23/20
  */
 package com.sg.vendingmachine.ui;
-//import com.sg.vendingmachine
 
 import com.sg.vendingmachine.dto.VendingMachineContents;
 import java.math.BigDecimal;
