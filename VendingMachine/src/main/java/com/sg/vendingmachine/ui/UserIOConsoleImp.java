@@ -4,6 +4,7 @@
  */
 package com.sg.vendingmachine.ui;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class UserIOConsoleImp implements UserIO {
@@ -110,6 +111,33 @@ public class UserIOConsoleImp implements UserIO {
             result = readDouble(msgPrompt);
         } while (result < min || result > max);
         return result;
+    }
+
+    @Override
+    public BigDecimal readBigDecimal(String msgPrompt) {
+        while (true) {
+            try {
+                //return BigDecimal.parseBigDecimal(this.readString(msgPrompt));
+            } catch (NumberFormatException e) {
+                this.print("Input error. Please try again.");
+            }
+        }
+            
+    }
+
+    @Override
+    public BigDecimal readBigDecimal(String msgPrompt, BigDecimal min, BigDecimal max) {
+        BigDecimal result;
+        result = readBigDecimal(msgPrompt);
+        
+        /*
+        do {
+            result = readBigDecimal(msgPrompt);
+        } while (result < min || result > max);
+        */
+        
+        return result;
+    
     }
     
     

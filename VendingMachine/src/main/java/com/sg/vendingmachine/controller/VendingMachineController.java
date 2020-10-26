@@ -15,11 +15,13 @@ public class VendingMachineController {
     private VendingMachineView view;
     private VendingMachineDAO dao;
     
+    // controller constructor
     public VendingMachineController (VendingMachineDAO dao, VendingMachineView view) {
         this.dao = dao;
         this.view = view;
     }
     
+    // main part of program ==> the switch cases
     public void run() {
         boolean keepGoing = true;
         int menuSelection = 0;
@@ -31,10 +33,10 @@ public class VendingMachineController {
                 switch(menuSelection)
                 {
                     case 1:
-                        // insertFunds();
+                        insertFunds();
                         break;
                     case 2:
-                        // selectItem();
+                        selectItem();
                         break;
                     case 3:
                         displayItemsList();
@@ -54,23 +56,72 @@ public class VendingMachineController {
         }
     }
     
+    private int getMenuSelection() {
+        return view.printMenuAndGetSelection();
+    }
+    
+    
+    // choice 1
     private void insertFunds() throws VendingMachineDAOException {
-        
+        view.displayInsertionBanner();
+        VendingMachineContents newTransaction = view.displayFundsInsertion();
+        dao.insertFunds(newTransaction.getUsrFunds(), newTransaction);
+        view.displayInsertionSuccessBanner();
+    }
+    
+    
+    // choice 2
+    private int getSelectionMenu() {
+        return view.displayItemSelection();
     }
     
     private void selectItem() throws VendingMachineDAOException {
-        view.displayItemSelection(items);
-    }
+        view.displayItemSelectionBanner();
+        
+        boolean keepGoing = true;
+        int itemSelect = 0;
+        while (keepGoing) {
+            itemSelect = getSelectionMenu();
+            
+            switch(itemSelect)
+            {
+                case 1:
+                    System.out.println("Coke costs $0.75");
+                    break;
+                case 2:
+                    System.out.println("Sprite costs $0.75");
+                    break;
+                case 3:
+                    System.out.println("Dr Pepper costs $0.75");
+                    break;
+                case 4:
+                    keepGoing = false;
+                    break;
+                default:
+                    unknownCommand();
+            }
+        }
+        /*
+        VendingMachineContents newSelection = view.displayItemSelection();
+        dao.makePurchase(newSelection.getItemName(), newSelection);
+        view.displayItemSelectionSuccessBanner();
+         */        
+    }    
     
+    
+    // choice 3
     private void displayItemsList() throws VendingMachineDAOException {
         view.displayItemListBanner();
         List<VendingMachineContents> itemsList = dao.getAllItems();
         view.displayItemsList(itemsList);
     }
     
-    private int getMenuSelection() {
-        return view.printMenuAndGetSelection();
-    }
+    
+    
+    
+    
+    
+    
     
     private void unknownCommand() {
         view.displayUnknownCommandBanner();
