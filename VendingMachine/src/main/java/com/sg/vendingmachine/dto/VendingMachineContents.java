@@ -10,62 +10,29 @@ import java.util.Map;
 
 public class VendingMachineContents {
     
-    private String itemName; // name of each item
-        //itemName = ("Coke   " + "\nSprite   " + "Dr Pepper   ");
-    private BigDecimal itemCost; // the cost of each item --> to remain constant
+    // hashmap with item names and their costs
+    HashMap <String, Double> drinkMap = new HashMap<>();
+    
+    
     private int itemCount; // the count of items within the machine --> to change after every transaction
-    private BigDecimal vmBank; // the total amount of money in the vending machine "bank"
+    private BigDecimal vmBank = new BigDecimal(500); // the total amount of money in the vending machine "bank"
     private BigDecimal usrFunds; // the amount of funds inserted by the user
  
     
-    public VendingMachineContents(String itemName){
-        this.itemName = itemName;
+    public VendingMachineContents(HashMap<String, Double> drinkMap){
+        this.drinkMap = drinkMap;
+        this.populateDrinkMap();
     }
     
     public VendingMachineContents(BigDecimal usrFunds) {
         this.usrFunds = usrFunds;
     }
     
-    public String getItemName() {
-        return itemName;
+    private void populateDrinkMap(){
+        this.drinkMap.put("Coke", 0.75);
+        this.drinkMap.put("Sprite", 0.75);
+        this.drinkMap.put("Dr Pepper", 0.75);
     }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public BigDecimal getItemCost() {
-        return itemCost;
-    }
-
-    public void setItemCost(BigDecimal itemCost) {
-        this.itemCost = itemCost;
-    }
-
-    public int getItemCount() {
-        return itemCount;
-    }
-
-    public void setItemCount(int itemCount) {
-        this.itemCount = itemCount;
-    }
-   
-    public BigDecimal getVmBank() {
-        return vmBank;
-    }
-
-    public void setVmBank(BigDecimal vmBank) {
-        this.vmBank = vmBank;
-    }
-
-    public BigDecimal getUsrFunds() {
-        return usrFunds;
-    }
-
-    public void setUsrFunds(BigDecimal usrFunds) {
-        this.usrFunds = usrFunds;
-    }
-
     
     
     

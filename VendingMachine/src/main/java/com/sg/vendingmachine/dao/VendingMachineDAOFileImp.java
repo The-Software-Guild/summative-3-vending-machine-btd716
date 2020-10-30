@@ -19,32 +19,30 @@ public class VendingMachineDAOFileImp implements VendingMachineDAO {
     // may need to make a second map; one for items themselves (below) and one for the funds in machine
     private Map <BigDecimal, VendingMachineContents> vmMoney = new HashMap<>();   
     private Map <String, VendingMachineContents> itemsAvailable = new HashMap<>();
-            
+
     @Override
     public VendingMachineContents insertFunds(BigDecimal usrFunds, VendingMachineContents vmBank) 
-            throws VendingMachineDAOException 
-    {
-        VendingMachineContents newFunds = vmMoney.put(usrFunds, vmBank);
-        return newFunds;  
+            throws VendingMachineDAOException {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     @Override
-    public VendingMachineContents makePurchase(String itemName, VendingMachineContents itemCount) 
-            throws VendingMachineDAOException 
-    {
-        VendingMachineContents newPurchase = itemsAvailable.put(itemName, itemCount);
-        return newPurchase;
+    public VendingMachineContents makePurchase(HashMap<String, Double> drinkMap) 
+            throws VendingMachineDAOException {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
     @Override
-    public List<VendingMachineContents> getAllItems() 
-            throws VendingMachineDAOException 
-    {        
-        return new ArrayList<> (itemsAvailable.values());        
+    public VendingMachineContents getAllItems(HashMap<String, Double> drinkMap) 
+            throws VendingMachineDAOException {
+        
+        
+        //return drinkMap;
+        
     }
-    
+            
     
     
 }
